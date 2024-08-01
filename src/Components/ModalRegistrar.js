@@ -75,7 +75,7 @@ const RegisterModal = () => {
         overlayClassName="modal-overlay"
       >
         <div className="modal-header">
-          <h5 className="modal-title">Registrar</h5>
+          <h2 className="modal-title">Registrar</h2>
           <button type="button" className="btn-close" onClick={closeModal}></button>
         </div>
         <form onSubmit={formik.handleSubmit} className="modal-body">

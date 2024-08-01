@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import './css/Login.css';
 
+
+
 const validationSchema = Yup.object({
   email: Yup.string().email('Email inválido').required('Campo obrigatório'),
   senha: Yup.string().min(5, 'Senha deve ter pelo menos 5 caracteres').required('Campo obrigatório'),
@@ -18,7 +20,7 @@ const Login = () => {
     setSuccessMessage(''); // Limpar mensagens anteriores
     setErrorMessage(''); // Limpar mensagens de erro
     try {
-      debugger
+      
       const response = await axios.post('https://7999-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/auth/login', {
         email: values.email,
         senha: values.senha,
@@ -30,9 +32,23 @@ const Login = () => {
       
       // Atualize a mensagem de sucesso
       setSuccessMessage('Seja bem-vindo ao sistema!');
+       // Redirecione para o dashboard
+       setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 2000);
+   
     } catch (error) {
       console.error('Erro ao enviar dados', error);
-      setErrorMessage('Falha ao realizar login. Verifique suas credenciais.');
+
+      if(error.response){
+        if(error.response.status === 403){
+          alert("Falha ao realizar o login. Verifique suas credenciais")
+        }
+        else{
+          alert("Occorreu um erro ao tentar utilizar o login.")
+        }
+        
+      }
     } finally {
       setSubmitting(false);
     }

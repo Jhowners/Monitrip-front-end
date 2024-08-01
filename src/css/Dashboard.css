@@ -1,0 +1,121 @@
+/* Dashboard.css */
+.dashboard-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: url('https://wallpaper.dog/large/977273.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+  }
+  
+  .dashboard-header {
+    background-color: rgba(0, 0, 0, 0.6); /* 60% de opacidade */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Linha sutil */
+  }
+  
+  .dashboard-header h1 {
+    margin: 0;
+  }
+  
+  .dashboard-header nav {
+    margin: 20px 0;
+  }
+  
+  .dashboard-header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .dashboard-header nav a:hover {
+    color: #ffeb3b; /* Cor do hover */
+  }
+  
+  .dashboard-header .user-info {
+    margin-top: 10px;
+  }
+  
+  .dashboard-header .user-info button {
+    background-color: rgba(244, 67, 54, 0.8); /* 80% de opacidade */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dashboard-header .user-info button:hover {
+    background-color: rgba(244, 67, 54, 1); /* Cor do hover */
+  }
+  
+  .dashboard-main {
+    padding: 20px;
+  }
+  
+  .dashboard-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .summary-item {
+    background-color: rgba(255, 255, 255, 0.8); /* 80% de opacidade */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .summary-item:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* Cor do hover */
+  }
+  
+  .dashboard-activities, .dashboard-visualizations {
+    background-color: rgba(255, 255, 255, 0.8); /* 80% de opacidade */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-activities ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .dashboard-activities li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Linha sutil */
+    padding: 10px 0;
+  }
+  
+  .dashboard-visualizations .chart, .dashboard-visualizations .map {
+    height: 200px;
+    background-color: rgba(240, 240, 240, 0.9); /* 90% de opacidade */
+    border-radius: 8px;
+  }
+  
+  .dashboard-footer {
+    background-color: rgba(0, 0, 0, 0.6); /* 60% de opacidade */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .dashboard-footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dashboard-footer a:hover {
+    text-decoration: underline;
+  }
+  
