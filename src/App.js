@@ -13,7 +13,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />} />
+        
+          <Route path="/login" element={!isAuthenticated ? <Login />: <Navigate to="/dashboard" />} />
           <Route path="/register" element={!isAuthenticated ? <ModalRegistrar /> : <Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/registrarveiculos" element={isAuthenticated ? <RegistrarVeiculo /> : <Navigate to="/login" />} />

@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import './css/RegistrarVeiculos.css';
+import './Components/NavBar.js'
+import NavBar from './Components/NavBar.js';
 
 const categorias = ['A', 'B', 'C', 'D', 'E'];
 
@@ -14,7 +16,7 @@ const RegistrarVeiculo = () => {
     const token = sessionStorage.getItem('authToken'); // Recupera o token da session storage
 
     if (token) {
-      axios.get('https://7999-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/empresas', {
+      axios.get('  "proxy": "https://601b-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/empresas', {
         headers: {
           Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho da requisição
         }
@@ -47,7 +49,7 @@ const RegistrarVeiculo = () => {
     setSubmitting(true);
     const token = sessionStorage.getItem('authToken'); // Recupera o token da session storage
 
-    axios.post('https://7999-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/veiculos', values, {
+    axios.post('https://58e6-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/veiculos', values, {
       headers: {
         Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho da requisição
       }
@@ -68,9 +70,14 @@ const RegistrarVeiculo = () => {
   }
 
   return (
+    <div className='Navbar'>
+        <NavBar/>
+   
     <div className="register-vehicle-container">
+        
       <div className="register-vehicle-card">
         <h2>Registrar Veículo</h2>
+        
         <Formik
           initialValues={{
             name: '',
@@ -148,6 +155,7 @@ const RegistrarVeiculo = () => {
           )}
         </Formik>
       </div>
+    </div>
     </div>
   );
 };

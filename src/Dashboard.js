@@ -3,6 +3,8 @@ import { FaUsers, FaCar, FaTaxi, FaTicketAlt, FaMapMarkerAlt, FaSignOutAlt } fro
 import './css/Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
+import NavBar from './Components/NavBar';
+
 const Dashboard = () => {
   const navigate = useNavigate();
   
@@ -21,18 +23,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <h1>Dashboard Administrativo</h1>
-        <nav>
-          <a href="/clientes"><FaUsers /> Clientes</a>
-          <a href="/veiculos"><FaCar /> Veículos</a>
-          <a href="/motoristas"><FaTaxi /> Motoristas</a>
-          <a href="/vendas"><FaTicketAlt /> Vendas de Passagens</a>
-          <a href="/localizacao"><FaMapMarkerAlt /> Localização</a>
-        </nav>
-        <div className="user-info">
-          <span>Usuário: Admin</span>
-          <button onClick={handleLogout}><FaSignOutAlt /> Logout</button>
-        </div>
+        <NavBar/>
       </header>
       
       <main className="dashboard-main">

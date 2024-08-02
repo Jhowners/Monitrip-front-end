@@ -32,7 +32,7 @@ const RegisterModal = () => {
       setError(null);
       setSuccessMessage('');
       try {
-        const response = await axios.post('https://7999-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/auth/registrar', values, {
+        const response = await axios.post('https://58e6-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/auth/registrar', values, {
           headers: {
             'Content-Type': 'application/json',
           }
