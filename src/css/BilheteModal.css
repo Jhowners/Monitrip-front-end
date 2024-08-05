@@ -1,42 +1,75 @@
+/* CSS existente */
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background: #fff;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    position: relative;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .modal-body {
-    margin-top: 20px;
-  }
-  
-  .modal-section {
-    margin-bottom: 20px;
-  }
-  
-  .modal-section h3 {
-    margin-bottom: 10px;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f0f0f0;
+}
+
+.modal-body {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section h3 {
+  margin-bottom: 10px;
+  color: #f0f0f0;
+}
+
+.modal-section p {
+  margin-bottom: 10px;
+}
+
+.modal-section p strong {
+  color: #e0e0e0;
+}
+
+.close-button-bottom {
+  margin-top: auto; /* Faz com que o botão fique no fundo do modal */
+  padding: 10px 20px;
+  background-color: #ED0800; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button-bottom:hover {
+  background-color: #33b249; /* Cor do botão ao passar o mouse */
+}

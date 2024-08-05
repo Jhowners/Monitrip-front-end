@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt,FaPhoneAlt } from 'react-icons/fa';
 import './css/Bilhete.css';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
@@ -11,7 +11,7 @@ import FormatarCpf from './Components/FormatarCpf';
 import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 
-const Bilhetes = () => {
+const Bilhetesv2 = () => {
   const [bilhetes, setBilhetes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBilhete, setSelectedBilhete] = useState(null);
@@ -41,6 +41,13 @@ const Bilhetes = () => {
     }
   }, []);
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+  
   const handleOpenModal = (bilhete) => {
     setSelectedBilhete(bilhete);
     setIsModalOpen(true);
@@ -78,10 +85,10 @@ const Bilhetes = () => {
                     <div><strong>Valor Total:</strong> R$ {bilhete.valorTotal} </div>
                   </div>
                   <div className="bilhete-info">
-                    <div><strong>Nome do Passageiro:</strong> {bilhete.informacoesPassageiro.nomePassageiro}</div>
+                    <div><strong>Nome do Passageiro:</strong> {truncateText(bilhete.informacoesPassageiro.nomePassageiro, 30)}</div>
                     <div><strong>Documento:</strong> {bilhete.informacoesPassageiro.documentoIdentificacaoPassageiro}</div>
                     <div><strong>CPF:</strong> <FormatarCpf cpf={bilhete.informacoesPassageiro.cpfPassageiro}/></div>
-                    <div><strong>Celular:</strong> <FormatarTelefone phone={bilhete.informacoesPassageiro.celularPassageiro}/></div>
+                    <div><FaPhoneAlt className="icon"/><strong>Celular:</strong> <FormatarTelefone phone={bilhete.informacoesPassageiro.celularPassageiro}/></div>
                   </div>
                   <div className="bilhete-info">
                     <div><FaCalendarAlt /> <strong>Data da Viagem:</strong> <FormatarData data={bilhete.dataViagem}/></div>
@@ -99,4 +106,4 @@ const Bilhetes = () => {
   );
 };
 
-export default Bilhetes;
+export default Bilhetesv2;

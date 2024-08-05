@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/BilheteModal.css'
+import '../css/BilheteModal.css';
 import FormatarData from './FormatarData';
 import FormatarHora from './FormatarHora';
 import FormatarCpf from './FormatarCpf';
@@ -31,7 +31,7 @@ const BilheteModal = ({ isOpen, onClose, bilhete }) => {
             <p><strong>Nome:</strong> {bilhete.informacoesPassageiro.nomePassageiro}</p>
             <p><strong>Documento:</strong> {bilhete.informacoesPassageiro.documentoIdentificacaoPassageiro}</p>
             <p><strong>CPF:</strong> <FormatarCpf cpf={bilhete.informacoesPassageiro.cpfPassageiro}/></p>
-            <p><strong>Celular:</strong> <FormatarTelefone phone={bilhete.informacoesPassageiro.celularPassageiro}/></p>
+            <p><strong>Celular:</strong>  <FormatarTelefone phone={bilhete.informacoesPassageiro.celularPassageiro}/></p>
           </div>
           <div className="modal-section">
             <h3>Detalhes da Viagem</h3>
@@ -39,6 +39,7 @@ const BilheteModal = ({ isOpen, onClose, bilhete }) => {
             <p><strong>Ponto Destino:</strong> {bilhete.idPontoDestinoViagem}</p>
           </div>
         </div>
+        <button className="close-button-bottom" onClick={onClose}>Fechar</button>
       </div>
     </div>
   );

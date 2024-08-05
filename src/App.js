@@ -6,6 +6,8 @@ import Dashboard from './Dashboard';
 import ModalRegistrar from './Components/ModalRegistrar';
 import RegistrarVeiculo from './RegistrarVeiculos';
 import Bilhetes from './Bilhetes';
+import Clientes from './Clientes';
+import Bilhetesv2 from './Bilhetesv2';
 
 function App() {
   const isAuthenticated = !!sessionStorage.getItem('authToken'); // Verificar se o usuário está autenticado
@@ -19,6 +21,8 @@ function App() {
           <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/registrarveiculos" element={isAuthenticated ? <RegistrarVeiculo /> : <Navigate to="/login" />} />
           <Route path="/bilhetes" element={isAuthenticated ? <Bilhetes /> : <Navigate to="/login" />} />
+          <Route path="/bilhetesv2" element={isAuthenticated ? <Bilhetesv2 /> : <Navigate to="/login" />} />
+          <Route path="/empresas" element={isAuthenticated ? <Clientes /> : <Navigate to="/login" />} />
           <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
         </Routes>
       </div>

@@ -18,10 +18,11 @@ const NavBar = () => {
     <header className="dashboard-header">
       <h1>ANTT</h1>
       <nav>
-        <Link to="/Dashboard"><FaUsers /> Clientes</Link>
+        <Link to="/empresas"><FaUsers /> Clientes</Link>
         <Link to="/registrarveiculos"><FaCar /> Veículos</Link>
         <Link to="/motoristas"><FaTaxi /> Motoristas</Link>
         <Link to="/bilhetes"><FaTicketAlt /> Bilhetes</Link>
+        <Link to="/bilhetesv2"><FaTicketAlt /> BilhetesVersao2</Link>
         <Link to="/localizacao"><FaMapMarkerAlt /> Localização</Link>
       </nav>
       <div className="user-info">
