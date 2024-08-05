@@ -33,9 +33,9 @@ const Login = () => {
       
       // Atualize a mensagem de sucesso
       setSuccessMessage('Seja bem-vindo ao sistema!');
-       // Redirecione para o dashboard
+
        setTimeout(() => {
-        window.location.href = '/dashboard';
+        window.location.href = '/empresas';
       }, 2000);
    
     } catch (error) {
