@@ -5,6 +5,7 @@ import axios from 'axios';
 import './css/RegistrarVeiculos.css';
 import './Components/NavBar.js'
 import NavBar from './Components/NavBar.js';
+import GlobalUrl from './GlobalUrl.js';
 
 const categorias = ['A', 'B', 'C', 'D', 'E'];
 
@@ -16,7 +17,7 @@ const RegistrarVeiculo = () => {
     const token = sessionStorage.getItem('authToken'); // Recupera o token da session storage
 
     if (token) {
-      axios.get('  "proxy": "https://601b-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/empresas', {
+      axios.get(GlobalUrl+'/empresas', {
         headers: {
           Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho da requisição
         }
@@ -49,7 +50,7 @@ const RegistrarVeiculo = () => {
     setSubmitting(true);
     const token = sessionStorage.getItem('authToken'); // Recupera o token da session storage
 
-    axios.post('https://58e6-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/veiculos', values, {
+    axios.post(GlobalUrl+'/veiculos', values, {
       headers: {
         Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho da requisição
       }

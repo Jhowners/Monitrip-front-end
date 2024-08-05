@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ModalRegistrar.css'; 
+import GlobalUrl from '../GlobalUrl';
 
 Modal.setAppElement('#root'); // Para acessibilidade
 
@@ -32,7 +33,7 @@ const RegisterModal = () => {
       setError(null);
       setSuccessMessage('');
       try {
-        const response = await axios.post('https://58e6-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/auth/registrar', values, {
+        const response = await axios.post(GlobalUrl+'/auth/registrar', values, {
           headers: {
             'Content-Type': 'application/json',
           }
@@ -43,7 +44,7 @@ const RegisterModal = () => {
 
         if (response.status === 200) {
           // Armazenar o token no localStorage
-          localStorage.setItem('authToken', response.data.token);
+          sessionStorage.setItem('authToken', response.data.token);
 
           // Exibir mensagem de sucesso
           setSuccessMessage('Registro realizado com sucesso!');

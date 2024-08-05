@@ -1,29 +1,24 @@
-import React from 'react';
-import { FaUsers, FaCar, FaTaxi, FaTicketAlt, FaMapMarkerAlt, FaSignOutAlt } from 'react-icons/fa';
-import './css/Dashboard.css';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import NavBar from './Components/NavBar';
+import './css/Dashboard.css';
+import { FaUsers, FaCar, FaTaxi, FaTicketAlt } from 'react-icons/fa';
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    navigate('/login');
-  };
 
-  const token = localStorage.getItem('authToken');
-  if (!token) {
-    // Redireciona para o login se não estiver autenticado
-    navigate('/login');
-    return null;
-  }
+  useEffect(() => {
+    const token = sessionStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <NavBar/>
+        <NavBar />
       </header>
       
       <main className="dashboard-main">

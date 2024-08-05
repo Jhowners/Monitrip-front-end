@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import './css/Login.css';
 import ModalRegistrar from './Components/ModalRegistrar.js'
+import GlobalUrl from './GlobalUrl.js';
 
 
 const validationSchema = Yup.object({
@@ -21,14 +22,14 @@ const Login = () => {
     setErrorMessage(''); // Limpar mensagens de erro
     try {
       
-      const response = await axios.post('https://58e6-2804-1b3-a180-2169-6c61-dfac-ab67-2920.ngrok-free.app/auth/login', {
+      const response = await axios.post( GlobalUrl+'/auth/login', {
         email: values.email,
         senha: values.senha,
       });
       console.log(response.data);
       
       // Supondo que o token esteja na resposta e você queira armazená-lo
-      localStorage.setItem('authToken', response.data.token);
+      sessionStorage.setItem('authToken', response.data.token);
       
       // Atualize a mensagem de sucesso
       setSuccessMessage('Seja bem-vindo ao sistema!');
@@ -57,7 +58,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Entrar</h2>
+        <h2>Insira suas credenciais</h2>
         <Formik
           initialValues={{ email: '', senha: '' }}
           validationSchema={validationSchema}
@@ -99,10 +100,6 @@ const Login = () => {
             </Form>
           )}
         </Formik>
-        <div>
-          <ModalRegistrar/> 
-        </div>
-
       </div>
     </div>
   );
