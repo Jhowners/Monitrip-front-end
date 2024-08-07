@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './css/RegistrarVeiculos.css'
+import { useNavigate } from 'react-router-dom';
+import './css/Veiculos.css';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
 
 const Veiculos = () => {
   const [veiculos, setVeiculos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Verificar se o token está presente
@@ -42,6 +44,7 @@ const Veiculos = () => {
       <NavBar />
       <div className="veiculos-content">
         <h2>Veículos</h2>
+        <button onClick={() => navigate('/adicionar-veiculo')} className="add-veiculo-button">Adicionar Veículo</button>
         <table className="veiculos-table">
           <thead>
             <tr>

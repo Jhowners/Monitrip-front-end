@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './css/Motoristas.css'
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirecionamento
+import './css/Motoristas.css';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
 
 const Motoristas = () => {
   const [motoristas, setMotoristas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Usar useNavigate para redirecionamento
 
   useEffect(() => {
     // Verificar se o token está presente
@@ -42,6 +44,7 @@ const Motoristas = () => {
       <NavBar />
       <div className="motoristas-content">
         <h2>Motoristas</h2>
+        <button onClick={() => navigate('/adicionar-motorista')} className="add-motorista-button">Adicionar Motorista</button>
         <table className="motoristas-table">
           <thead>
             <tr>

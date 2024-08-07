@@ -16,17 +16,17 @@ const NavBar = () => {
 
   return (
     <header className="dashboard-header">
-      <h1>ANTT</h1>
+      <h1>Monitrip Menu</h1>
       <nav>
         <Link to="/empresas"><FaUsers /> Clientes</Link>
-        <Link to="/registrarveiculos"><FaCar /> Veículos</Link>
+        <Link to="/veiculos"><FaCar /> Veículos</Link>
         <Link to="/motoristas"><FaTaxi /> Motoristas</Link>
 
         <Link to="/bilhetesBB"><FaTicketAlt /> BilhetesBB</Link>
         <Link to="/bilhetesVR"><FaTicketAlt /> BilhetesVR</Link>
-
+{/* 
         <Link to="/bilhetesBBv2"><FaTicketAlt /> BilhetesBBVersao2</Link>
-        <Link to="/bilhetesVRv2"><FaTicketAlt /> BilhetesVRVersao2</Link>
+        <Link to="/bilhetesVRv2"><FaTicketAlt /> BilhetesVRVersao2</Link> */}
 
         <Link to="/localizacao"><FaMapMarkerAlt /> Localização</Link>
       </nav>

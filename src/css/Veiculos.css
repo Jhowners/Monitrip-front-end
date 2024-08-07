@@ -44,3 +44,18 @@
 .veiculos-table tr:nth-child(even) td {
   background-color: #252525; /* Cor alternativa para linhas pares */
 }
+
+.add-veiculo-button {
+  background-color: #4caf50; /* Cor de fundo verde */
+  color: #fff; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor pointer para indicar que é clicável */
+  font-size: 16px; /* Tamanho da fonte */
+  margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+.add-veiculo-button:hover {
+  background-color: #45a049; /* Cor de fundo verde mais escura no hover */
+}
