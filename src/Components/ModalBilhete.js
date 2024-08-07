@@ -12,7 +12,7 @@ const BilheteModal = ({ isOpen, onClose, bilhete }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <span className="close-button" onClick={onClose}>×</span>
+        <span className="close-button" onClick={onClose}>X</span>
         <h2>Detalhes do Bilhete</h2>
         <div className="modal-body">
           <div className="modal-section">

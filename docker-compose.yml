@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .  # Diretório onde está o Dockerfile
+    ports:
+      - "3000:3000"  # Mapeia a porta 3000 do contêiner para a porta 3000 da máquina local
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=youruser
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=yourdatabase
+    depends_on:
+      - db
+    volumes:
+      - .:/app  # Monta o diretório atual como volume para desenvolvimento
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdatabase
+    ports:
+      - "5432:5432"  # Mapeia a porta 5432 do contêiner para a porta 5432 da máquina local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistência dos dados do PostgreSQL
+
+volumes:
+  postgres_data:

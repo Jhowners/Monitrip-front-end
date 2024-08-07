@@ -1,0 +1,46 @@
+.motoristas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #fff; /* Cor do texto em plano de fundo escuro */
+    background: #1a1a1a; /* Cor de fundo escuro para contraste */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.motoristas-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.motoristas-header h2 {
+    color: #e0e0e0; /* Cor clara para o título */
+    margin-bottom: 20px;
+}
+
+.motoristas-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.motoristas-table th, .motoristas-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333; /* Linha de separação suave */
+}
+
+.motoristas-table th {
+    background-color: #333; /* Fundo dos cabeçalhos */
+    color: #fff; /* Cor do texto dos cabeçalhos */
+}
+
+.motoristas-table td {
+    background-color: #2a2a2a; /* Cor de fundo das células */
+    color: #ddd; /* Cor do texto das células */
+}
+
+.motoristas-table tr:nth-child(even) td {
+    background-color: #252525; /* Cor alternativa para linhas pares */
+}

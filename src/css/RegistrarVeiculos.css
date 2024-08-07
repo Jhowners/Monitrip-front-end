@@ -1,67 +1,46 @@
-/* RegisterVehicle.css */
-.register-vehicle-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('https://wallpaper.dog/large/977273.png') no-repeat center center fixed;
-    background-size: cover;
-  }
-  
-  .register-vehicle-card {
-    background-color: rgba(255, 255, 255, 0.9); /* 90% de opacidade */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .register-vehicle-card h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-  }
-  
-  .invalid-feedback {
-    color: #dc3545;
-    font-size: 0.875em;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
+.veiculos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff; /* Cor do texto em plano de fundo escuro */
+  background: #1a1a1a; /* Cor de fundo escuro para contraste */
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.veiculos-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.veiculos-header h2 {
+  color: #e0e0e0; /* Cor clara para o título */
+  margin-bottom: 20px;
+}
+
+.veiculos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.veiculos-table th, .veiculos-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333; /* Linha de separação suave */
+}
+
+.veiculos-table th {
+  background-color: #333; /* Fundo dos cabeçalhos */
+  color: #fff; /* Cor do texto dos cabeçalhos */
+}
+
+.veiculos-table td {
+  background-color: #2a2a2a; /* Cor de fundo das células */
+  color: #ddd; /* Cor do texto das células */
+}
+
+.veiculos-table tr:nth-child(even) td {
+  background-color: #252525; /* Cor alternativa para linhas pares */
+}

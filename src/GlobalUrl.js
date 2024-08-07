@@ -1,3 +1,3 @@
-const GlobalUrl = "https://0f80-2804-1b3-a180-2169-a14e-1d98-25e5-562c.ngrok-free.app"
+const GlobalUrl = "https://d95f-2804-1b3-a180-2169-f874-1066-5ac2-cd12.ngrok-free.app"
 
 export default GlobalUrl;

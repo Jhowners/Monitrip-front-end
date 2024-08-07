@@ -11,7 +11,7 @@ import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 import './css/Bilhetev2.css'
 
-const Bilhetes = () => {
+const BilhetesVRv2 = () => {
   const [bilhetes, setBilhetes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBilhete, setSelectedBilhete] = useState(null);
@@ -21,7 +21,7 @@ const Bilhetes = () => {
     const token = sessionStorage.getItem('authToken');
 
     if (token) {
-      axios.get(GlobalUrl + '/bilhetes', {
+      axios.get(GlobalUrl + '/bilhetesVR', {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -68,7 +68,7 @@ const Bilhetes = () => {
       <NavBar />
       <div className="bilhetes-content">
         <div className="bilhetes-header">
-          <h2>Bilhetes</h2>
+          <h2>Bilhetes da Estrela Rondônia</h2>
         </div>
         {Array.isArray(bilhetes) && bilhetes.length === 0 ? (
           <p>Nenhum bilhete encontrado.</p>
@@ -114,4 +114,4 @@ const Bilhetes = () => {
   );
 };
 
-export default Bilhetes;
+export default BilhetesVRv2;

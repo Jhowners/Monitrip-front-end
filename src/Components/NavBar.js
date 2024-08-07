@@ -21,8 +21,13 @@ const NavBar = () => {
         <Link to="/empresas"><FaUsers /> Clientes</Link>
         <Link to="/registrarveiculos"><FaCar /> Veículos</Link>
         <Link to="/motoristas"><FaTaxi /> Motoristas</Link>
-        <Link to="/bilhetes"><FaTicketAlt /> Bilhetes</Link>
-        <Link to="/bilhetesv2"><FaTicketAlt /> BilhetesVersao2</Link>
+
+        <Link to="/bilhetesBB"><FaTicketAlt /> BilhetesBB</Link>
+        <Link to="/bilhetesVR"><FaTicketAlt /> BilhetesVR</Link>
+
+        <Link to="/bilhetesBBv2"><FaTicketAlt /> BilhetesBBVersao2</Link>
+        <Link to="/bilhetesVRv2"><FaTicketAlt /> BilhetesVRVersao2</Link>
+
         <Link to="/localizacao"><FaMapMarkerAlt /> Localização</Link>
       </nav>
       <div className="user-info">

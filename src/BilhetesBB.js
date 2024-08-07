@@ -11,7 +11,7 @@ import FormatarCpf from './Components/FormatarCpf';
 import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 
-const Bilhetesv2 = () => {
+const BilhetesBB = () => {
   const [bilhetes, setBilhetes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBilhete, setSelectedBilhete] = useState(null);
@@ -21,7 +21,7 @@ const Bilhetesv2 = () => {
     const token = sessionStorage.getItem('authToken');
 
     if (token) {
-      axios.get(GlobalUrl + '/bilhetes', {
+      axios.get(GlobalUrl + '/bilhetesBB', {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -66,7 +66,7 @@ const Bilhetesv2 = () => {
     <div className="bilhetes-container">
       <NavBar />
       <div className="bilhetes-content">
-        <h2>Bilhetes</h2>
+        <h2>Bilhetes do Brasil Bus</h2>
         {Array.isArray(bilhetes) && bilhetes.length === 0 ? (
           <p>Nenhum bilhete encontrado.</p>
         ) : (
@@ -106,4 +106,4 @@ const Bilhetesv2 = () => {
   );
 };
 
-export default Bilhetesv2;
+export default BilhetesBB;
