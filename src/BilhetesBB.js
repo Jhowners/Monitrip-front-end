@@ -11,7 +11,6 @@ import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 import './css/Bilhete.css';
 
-const ITEMS_PER_PAGE = 10;
 
 const BilhetesBB = () => {
   const [bilhetes, setBilhetes] = useState([]);
@@ -31,13 +30,16 @@ const BilhetesBB = () => {
           'ngrok-skip-browser-warning': 'true'
         },
         params: {
-          page: currentPage,
-          size: ITEMS_PER_PAGE
+          page: currentPage -1
         }
       })
       .then(response => {
-        setBilhetes(response.data.content || response.data.bilhetes || []);
-        setTotalPages(response.data.totalPages || 1);
+        const totalItems = response.data.totalElements || response.data.totalItems || 0;
+        const fetchedBilhetes = response.data.content || response.data.bilhetes || [];
+        const totalPages = Math.ceil(totalItems / 20);
+
+        setBilhetes(fetchedBilhetes);
+        setTotalPages(totalPages);
         setLoading(false);
       })
       .catch(error => {

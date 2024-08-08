@@ -11,7 +11,7 @@ import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 import './css/Bilhete.css';
 
-const ITEMS_PER_PAGE = 10;
+
 
 const BilhetesVR = () => {
   const [bilhetes, setBilhetes] = useState([]);
@@ -31,8 +31,7 @@ const BilhetesVR = () => {
           'ngrok-skip-browser-warning': 'true'
         },
         params: {
-          page: currentPage,
-          size: ITEMS_PER_PAGE
+          page: currentPage -1
         }
       })
       .then(response => {
