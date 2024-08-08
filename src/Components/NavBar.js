@@ -22,8 +22,8 @@ const NavBar = () => {
         <Link to="/listar-veiculos"><FaCar /> Veículos</Link>
         <Link to="/listar-motoristas"><FaTaxi /> Motoristas</Link>
 
-        <Link to="/bilhetesBB"><FaTicketAlt /> BilhetesBB</Link>
-        <Link to="/bilhetesVR"><FaTicketAlt /> BilhetesVR</Link>
+        <Link to="/bilhetesBB"><FaTicketAlt /> Brasil Bus</Link>
+        <Link to="/bilhetesVR"><FaTicketAlt /> Estrela VR</Link>
 {/* 
         <Link to="/bilhetesBBv2"><FaTicketAlt /> BilhetesBBVersao2</Link>
         <Link to="/bilhetesVRv2"><FaTicketAlt /> BilhetesVRVersao2</Link> */}

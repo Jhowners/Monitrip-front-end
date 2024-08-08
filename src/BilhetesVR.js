@@ -82,7 +82,7 @@ const BilhetesVR = () => {
       <NavBar />
       <div className="bilhetes-content">
         <div className="bilhetes-header">
-          <h2>Bilhetes do Brasil Bus</h2>
+          <h2>Bilhetes da Estrela Rondonia</h2>
         </div>
         {Array.isArray(bilhetes) && bilhetes.length === 0 ? (
           <p>Nenhum bilhete encontrado.</p>
