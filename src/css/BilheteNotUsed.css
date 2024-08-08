@@ -1,0 +1,85 @@
+.bilhetes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff; /* Cor do texto principal */
+  background: url('https://wallpaper.dog/large/977273.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.bilhetes-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bilhetes-header h2 {
+  color: #e0e0e0; /* Cor clara para o título */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bilhetes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.bilhete-card {
+  background-color: #2c2c2c; /* Cor de fundo mais clara para os cards */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bilhete-card:hover {
+  background-color: #383838; /* Cor de fundo escura no hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada no hover */
+}
+
+.bilhete-header {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.bilhete-body {
+  width: 100%;
+}
+
+.bilhete-info {
+  margin-bottom: 10px;
+}
+
+.bilhete-info div {
+  margin-bottom: 5px;
+}
+
+.bilhete-info strong {
+  color: #e0e0e0; /* Cor clara para o texto em negrito */
+}
+
+.bilhete-card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #e0e0e0; /* Cor clara para o título do card */
+}
+
+.bilhete-card svg {
+  color: #007bff;
+  font-size: 24px;
+}

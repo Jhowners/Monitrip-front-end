@@ -1,72 +1,84 @@
+/* Tela de login */
 .login-container {
   font-family: Arial, sans-serif;
-  color: #333;
-  background: url('https://wallpaper.dog/large/977273.png') no-repeat center center fixed;
-  background-size: cover;
+  color: #fff; /* Cor do texto em plano de fundo escuro */
+  background: #1a1a1a; /* Cor de fundo escuro para contraste */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.login-card {
+  background-color: #2a2a2a; /* Fundo do card em tom escuro */
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-  
-  .login-card {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h2 {
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .invalid-feedback {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .submit-button:disabled {
-    background-color: #007bff;
-    opacity: 0.6;
-  }
-  
-  
+h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #e0e0e0; /* Cor clara para o título */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #e0e0e0; /* Cor clara para labels */
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #333; /* Cor do border dos campos de entrada */
+  background-color: #333; /* Fundo dos campos de entrada */
+  color: #ddd; /* Cor do texto dos campos de entrada */
+  font-size: 1rem;
+  transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+}
+
+.form-control::placeholder {
+  color: #888; /* Cor clara para o placeholder */
+}
+
+.form-control:focus {
+  border-color: #0056b3; /* Cor do border ao focar */
+  background-color: #2a2a2a; /* Fundo mais escuro ao focar */
+  outline: none;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:disabled {
+  background-color: #007bff;
+  opacity: 0.6;
+}
