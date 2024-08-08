@@ -19,8 +19,8 @@ const NavBar = () => {
       <h1>Monitrip Menu</h1>
       <nav>
         <Link to="/empresas"><FaUsers /> Clientes</Link>
-        <Link to="/veiculos"><FaCar /> Veículos</Link>
-        <Link to="/motoristas"><FaTaxi /> Motoristas</Link>
+        <Link to="/listar-veiculos"><FaCar /> Veículos</Link>
+        <Link to="/listar-motoristas"><FaTaxi /> Motoristas</Link>
 
         <Link to="/bilhetesBB"><FaTicketAlt /> BilhetesBB</Link>
         <Link to="/bilhetesVR"><FaTicketAlt /> BilhetesVR</Link>

@@ -1,0 +1,91 @@
+/* ListarMotoristas.css */
+.listar-motoristas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: #1a1a1a;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .listar-motoristas-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .listar-motoristas-content h2 {
+    color: #e0e0e0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .motoristas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .motoristas-table th, .motoristas-table td {
+    padding: 10px;
+    border: 1px solid #444;
+  }
+  
+  .motoristas-table th {
+    background: #333;
+    color: #e0e0e0;
+  }
+  
+  .motoristas-table td {
+    background: #444;
+    color: #e0e0e0;
+  }
+  
+  .motoristas-table button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .motoristas-table .edit-button {
+    background: #4caf50;
+  }
+  
+  .motoristas-table .edit-button:hover {
+    background: #45a049;
+  }
+  
+  .motoristas-table .delete-button {
+    background: #f44336;
+  }
+  
+  .motoristas-table .delete-button:hover {
+    background: #e53935;
+  }
+  
+  .add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background: #4caf50;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    background: #45a049;
+  }
+  

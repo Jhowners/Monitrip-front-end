@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './css/AdicionarMotorista.css';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
 
 const AdicionarMotorista = () => {
+  const { id } = useParams();
   const [motorista, setMotorista] = useState({
     name: '',
     cpf: '',
@@ -16,6 +17,24 @@ const AdicionarMotorista = () => {
     empresa: { id: '' } 
   });
   const navigate = useNavigate();
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      setIsEditing(true);
+      const fetchMotorista = async () => {
+        const token = sessionStorage.getItem('authToken');
+        const response = await axios.get(`${GlobalUrl}/motoristas/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setMotorista(response.data);
+      };
+      fetchMotorista();
+    }
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,25 +56,40 @@ const AdicionarMotorista = () => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
 
-    axios.post(GlobalUrl + '/motoristas', motorista, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'ngrok-skip-browser-warning': 'true'
-      }
-    })
-    .then(() => {
-      navigate('/motoristas');
-    })
-    .catch(error => {
-      console.error('Error adding driver', error);
-    });
+    if (isEditing) {
+      axios.put(`${GlobalUrl}/motoristas/${id}`, motorista, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      .then(() => {
+        navigate('/listar-motoristas');
+      })
+      .catch(error => {
+        console.error('Error updating driver', error);
+      });
+    } else {
+      axios.post(GlobalUrl + '/motoristas', motorista, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      .then(() => {
+        navigate('/listar-motoristas');
+      })
+      .catch(error => {
+        console.error('Error adding driver', error);
+      });
+    }
   };
 
   return (
     <div className="adicionar-motorista-container">
       <NavBar />
       <div className="adicionar-motorista-content">
-        <h2>Adicionar Motorista</h2>
+        <h2>{isEditing ? 'Editar Motorista' : 'Adicionar Motorista'}</h2>
         <form onSubmit={handleSubmit} className="adicionar-motorista-form">
           <div className="form-group">
             <label htmlFor="name">Nome</label>
@@ -96,7 +130,7 @@ const AdicionarMotorista = () => {
             <label htmlFor="empresa.id">Empresa ID</label>
             <input type="text" id="empresa.id" name="empresa.id" value={motorista.empresa.id} onChange={handleChange} required />
           </div>
-          <button type="submit" className="submit-button">Adicionar</button>
+          <button type="submit" className="submit-button">{isEditing ? 'Salvar Alterações' : 'Adicionar'}</button>
         </form>
       </div>
     </div>

@@ -1,0 +1,88 @@
+.listar-veiculos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #fff; /* Cor do texto em plano de fundo escuro */
+    background: #1a1a1a; /* Cor de fundo escuro para contraste */
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .listar-veiculos-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #2a2a2a; /* Cor de fundo para contraste */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .add-button:hover {
+    background-color: #218838;
+  }
+  
+  .veiculos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .veiculos-table th, .veiculos-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333; /* Linha de separação suave */
+  }
+  
+  .veiculos-table th {
+    background-color: #333; /* Fundo dos cabeçalhos */
+    color: #fff; /* Cor do texto dos cabeçalhos */
+  }
+  
+  .veiculos-table td {
+    background-color: #2a2a2a; /* Cor de fundo das células */
+    color: #ddd; /* Cor do texto das células */
+  }
+  
+  .veiculos-table tr:nth-child(even) td {
+    background-color: #252525; /* Cor alternativa para linhas pares */
+  }
+  
+  .edit-button, .delete-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .edit-button {
+    background-color: #28a745;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+  
+  .edit-button:hover {
+    background-color: #218838;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
