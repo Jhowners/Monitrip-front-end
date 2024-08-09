@@ -8,6 +8,7 @@ import './css/EditarVeiculo.css';
 const EditarVeiculos = () => {
   const { id } = useParams();
   const [veiculo, setVeiculo] = useState(null);
+  const [celulares, setCelulares] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +26,24 @@ const EditarVeiculos = () => {
         console.error('Erro ao buscar veículo', error);
       }
     };
+
+    const fetchCelulares = async () => {
+      const token = sessionStorage.getItem('authToken');
+      try {
+        const response = await axios.get(`${GlobalUrl}/celulares`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setCelulares(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar celulares', error);
+      }
+    };
+
     fetchVeiculo();
+    fetchCelulares();
   }, [id]);
 
   const handleChange = (e) => {
@@ -101,12 +119,21 @@ const EditarVeiculos = () => {
             <input type="text" id="marca" name="marca" value={veiculo.marca} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <label htmlFor="categoria_cnh">Categoria CNH</label>
-            <input type="text" id="categoria_cnh" name="categoria_cnh" value={veiculo.categoria_cnh} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="celular.id">ID do Celular</label>
-            <input type="number" id="celular.id" name="celular.id" value={veiculo.celular.id} onChange={handleChange} required />
+            <label htmlFor="celular.id">Celular</label>
+            <select
+              id="celular.id"
+              name="celular.id"
+              value={veiculo.celular.id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecione</option>
+              {celulares.map(celular => (
+                <option key={celular.id} value={celular.id}>
+                  {celular.numero}
+                </option>
+              ))}
+            </select>
           </div>
           <button type="submit" className="submit-button">Salvar</button>
         </form>

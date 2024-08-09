@@ -17,6 +17,9 @@ import AdicionarVeiculo from './AdicionarVeiculos';
 import EditarMotorista from './EditarMotorista';
 import EditarVeiculos from './EditarVeiculos';
 import ListarVeiculos from './ListarVeiculos'
+import AdicionarTelefone from './AdicionarTelefone';
+import AlterarTelefone from './AlterarTelefone';
+import ListarTelefones from './ListarTelefone';
 
 function App() {
   const isAuthenticated = !!sessionStorage.getItem('authToken'); // Verificar se o usuário está autenticado
@@ -28,6 +31,7 @@ function App() {
           <Route path="/login" element={!isAuthenticated ? <Login />: <Navigate to="/login" />} />
           <Route path="/register" element={!isAuthenticated ? <ModalRegistrar /> : <Navigate to="/login" />} />
           <Route path="/empresas" element={isAuthenticated ? <Clientes /> : <Navigate to="/login" />} />
+          <Route path="/celulares" element={isAuthenticated ? <AdicionarTelefone /> : <Navigate to="/login" />} />
           <Route path="/listar-veiculos" element={isAuthenticated ? <ListarVeiculos /> : <Navigate to="/login" />} />
           <Route path="/bilhetesBB" element={isAuthenticated ? <BilhetesBB /> : <Navigate to="/login" />} />
           <Route path="/bilhetesVR" element={isAuthenticated ? <BilhetesVR /> : <Navigate to="/login" />} />
@@ -39,6 +43,12 @@ function App() {
           <Route path="/editar-motorista/:id" element={isAuthenticated ? <EditarMotorista /> : <Navigate to="/login" />} />
           <Route path="/editar-veiculo/:id" element={isAuthenticated ? <EditarVeiculos /> : <Navigate to="/login" />} />
           <Route path="/adicionar-veiculo" element={isAuthenticated ? <AdicionarVeiculo /> : <Navigate to="/login" />} />
+
+          <Route path="/adicionar-telefone" element={isAuthenticated ? <AdicionarTelefone /> : <Navigate to="/login" />} />
+          <Route path="/alterar-telefone/:id" element={isAuthenticated ? <AlterarTelefone /> : <Navigate to="/login" />} />
+          <Route path="/listar-telefones" element={isAuthenticated ? <ListarTelefones /> : <Navigate to="/login" />} />
+
+
           <Route path="/" element={<Navigate to={isAuthenticated ? "/empresas" : "/login"} />} />
         </Routes>
       </div>

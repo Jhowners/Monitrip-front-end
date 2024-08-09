@@ -56,7 +56,6 @@ const ListarVeiculos = () => {
               <th>Ano de Fabricação</th>
               <th>Status</th>
               <th>Marca</th>
-              <th>Categoria CNH</th>
               <th>ID Celular</th>
               <th>Ações</th>
             </tr>
@@ -70,7 +69,6 @@ const ListarVeiculos = () => {
                 <td>{veiculo.ano_fabricacao}</td>
                 <td>{veiculo.status}</td>
                 <td>{veiculo.marca}</td>
-                <td>{veiculo.categoria_cnh}</td>
                 <td>{veiculo.celular.id}</td>
                 <td>
                   <Link to={`/editar-veiculo/${veiculo.id}`} className="edit-button">Editar</Link>

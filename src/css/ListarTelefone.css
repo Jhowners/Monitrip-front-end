@@ -1,0 +1,91 @@
+.listar-telefones-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: #1a1a1a;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .listar-telefones-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .listar-telefones-content h2 {
+    color: #e0e0e0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .add-telefone-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .add-telefone-button:hover {
+    background-color: #45a049;
+  }
+  
+  .telefones-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .telefones-table th, .telefones-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+  }
+  
+  .telefones-table th {
+    background: #333;
+    color: #e0e0e0;
+  }
+  
+  .telefones-table td {
+    background: #444;
+    color: #e0e0e0;
+  }
+  
+  .edit-button, .delete-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .edit-button {
+    background: #4caf50;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background: #45a049;
+  }
+  
+  .delete-button {
+    background: #f44336;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background: #e53935;
+  }
+  

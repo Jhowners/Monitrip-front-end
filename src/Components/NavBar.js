@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUsers, FaCar, FaTaxi, FaTicketAlt, FaMapMarkerAlt, FaSignOutAlt } from 'react-icons/fa';
+import { FaUsers, FaCar, FaTaxi, FaTicketAlt, FaMapMarkerAlt, FaSignOutAlt, FaPhoneAlt } from 'react-icons/fa';
 import '../css/NavBar.css';
 
 const NavBar = () => {
@@ -24,6 +24,7 @@ const NavBar = () => {
 
         <Link to="/bilhetesBB"><FaTicketAlt /> Brasil Bus</Link>
         <Link to="/bilhetesVR"><FaTicketAlt /> Estrela VR</Link>
+        <Link to="/listar-telefones"><FaPhoneAlt />Celular</Link>
 {/* 
         <Link to="/bilhetesBBv2"><FaTicketAlt /> BilhetesBBVersao2</Link>
         <Link to="/bilhetesVRv2"><FaTicketAlt /> BilhetesVRVersao2</Link> */}

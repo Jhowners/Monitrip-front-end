@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
+import FormatarDataListar from './Components/FormatarDataListar'; // Atualize a importação
 import './css/ListarMotoristas.css';
+import FormatarCpf from './Components/FormatarCpf'
 
 const ListarMotoristas = () => {
   const [motoristas, setMotoristas] = useState([]);
@@ -12,7 +14,7 @@ const ListarMotoristas = () => {
   useEffect(() => {
     const fetchMotoristas = async () => {
       const token = sessionStorage.getItem('authToken');
-      const response = await axios.get(GlobalUrl + '/motoristas', {
+      const response = await axios.get(`${GlobalUrl}/motoristas`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -65,8 +67,8 @@ const ListarMotoristas = () => {
             {motoristas.map(motorista => (
               <tr key={motorista.id}>
                 <td>{motorista.name}</td>
-                <td>{motorista.cpf}</td>
-                <td>{motorista.data_nascimento}</td>
+                <td><FormatarCpf cpf={motorista.cpf}/></td>
+                <td><FormatarDataListar data={motorista.data_nascimento} /></td>
                 <td>{motorista.numero_cnh}</td>
                 <td>{motorista.categoria_cnh}</td>
                 <td>{motorista.status}</td>

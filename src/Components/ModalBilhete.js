@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/BilheteModal.css';
-import FormatarData from './FormatarData';
+import FormataDataBilhetes from './FormataDataBilhetes';
 import FormatarHora from './FormatarHora';
 import FormatarCpf from './FormatarCpf';
 import FormatarTelefone from './FormatarTelefone';
@@ -20,9 +20,9 @@ const BilheteModal = ({ isOpen, onClose, bilhete }) => {
             <p><strong>Código Bilhete:</strong> {bilhete.codigoBilheteEmbarque}</p>
             <p><strong>CNPJ da Empresa:</strong> <FormatarCnpj cnpj={bilhete.cnpjEmpresa}/></p>
             <p><strong>Número Série Equipamento Fiscal:</strong> {bilhete.numeroSerieEquipamentoFiscal}</p>
-            <p><strong>Data de Emissão:</strong> <FormatarData data={bilhete.dataEmissaoBilhete}/></p>
+            <p><strong>Data de Emissão:</strong> <FormataDataBilhetes data={bilhete.dataEmissaoBilhete}/></p>
             <p><strong>Hora de Emissão:</strong> <FormatarHora time={bilhete.horaEmissaoBilhete}/></p>
-            <p><strong>Data da Viagem:</strong> <FormatarData data={bilhete.dataViagem}/></p>
+            <p><strong>Data da Viagem:</strong> <FormataDataBilhetes data={bilhete.dataViagem}/></p>
             <p><strong>Hora da Viagem:</strong> <FormatarHora time={bilhete.horaViagem}/></p>
             <p><strong>Valor Total:</strong> R$ {bilhete.valorTotal}</p>
           </div>

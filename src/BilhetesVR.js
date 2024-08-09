@@ -4,7 +4,7 @@ import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-ic
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
 import ModalBilhete from './Components/ModalBilhete';
-import FormatarData from './Components/FormatarData';
+import FormataDataBilhetes from './Components/FormataDataBilhetes';
 import FormatarHora from './Components/FormatarHora';
 import FormatarCpf from './Components/FormatarCpf';
 import FormatarTelefone from './Components/FormatarTelefone';
@@ -107,16 +107,84 @@ const BilhetesVR = () => {
                 {Array.isArray(bilhetes) && bilhetes.map(bilhete => (
                   <tr key={bilhete.id} onClick={() => handleOpenModal(bilhete)}>
                     <td>{bilhete.numeroBilheteEmbarque}</td>
-                    <td><FormatarCnpj cnpj={bilhete.cnpjEmpresa} /></td>
-                    <td><FaCalendarAlt className="icon" /> <FormatarData data={bilhete.dataEmissaoBilhete} /></td>
-                    <td><FaCalendarAlt className="icon" /> <FormatarHora time={bilhete.horaEmissaoBilhete} /></td>
-                    <td>R$ {bilhete.valorTotal}</td>
-                    <td>{truncateText(bilhete.informacoesPassageiro.nomePassageiro, 30)}</td>
-                    <td><FormatarCpf cpf={bilhete.informacoesPassageiro.cpfPassageiro} /></td>
-                    <td><FaPhoneAlt className="icon" /><FormatarTelefone phone={bilhete.informacoesPassageiro.celularPassageiro} /></td>
-                    <td><FaCalendarAlt className="icon" /> <FormatarData data={bilhete.dataViagem} /></td>
-                    <td><FaMapMarkerAlt className="icon" /> {bilhete.idPontoOrigemViagem}</td>
-                    <td><FaMapMarkerAlt className="icon" /> {bilhete.idPontoDestinoViagem}</td>
+                    <td>
+  <FormatarCnpj 
+    cnpj={bilhete.cnpjEmpresa ? 
+      bilhete.cnpjEmpresa : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  <FaCalendarAlt className="icon" /> 
+  <FormataDataBilhetes 
+    data={bilhete.dataEmissaoBilhete ? 
+      bilhete.dataEmissaoBilhete : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  <FaCalendarAlt className="icon" /> 
+  <FormatarHora 
+    time={bilhete.horaEmissaoBilhete ? 
+      bilhete.horaEmissaoBilhete : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  R$ {bilhete.valorTotal ? 
+    bilhete.valorTotal : 
+    'Não Cadastrado'}
+</td>
+
+<td>
+  {truncateText(bilhete.informacoesPassageiro.nomePassageiro ? 
+    bilhete.informacoesPassageiro.nomePassageiro : 
+    'Não Cadastrado', 30)}
+</td>
+
+<td>
+  <FormatarCpf 
+    cpf={bilhete.informacoesPassageiro.cpfPassageiro ? 
+      bilhete.informacoesPassageiro.cpfPassageiro : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  <FaPhoneAlt className="icon" />
+  <FormatarTelefone 
+    phone={bilhete.informacoesPassageiro.celularPassageiro ? 
+      bilhete.informacoesPassageiro.celularPassageiro : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  <FaCalendarAlt className="icon" /> 
+  <FormataDataBilhetes 
+    data={bilhete.dataViagem ? 
+      bilhete.dataViagem : 
+      'Não Cadastrado'} 
+  />
+</td>
+
+<td>
+  <FaMapMarkerAlt className="icon" /> 
+  {bilhete.idPontoOrigemViagem ? 
+    bilhete.idPontoOrigemViagem : 
+    'Não Cadastrado'}
+</td>
+
+<td>
+  <FaMapMarkerAlt className="icon" /> 
+  {bilhete.idPontoDestinoViagem ? 
+    bilhete.idPontoDestinoViagem : 
+    'Não Cadastrado'}
+</td>
+
                   </tr>
                 ))}
               </tbody>

@@ -3,10 +3,35 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import GlobalUrl from './GlobalUrl';
+import MascaraCPF from './Components/MascaraCPF';
+import MascaraData from './Components/MascaraData';
 import './css/EditarMotorista.css';
 
+// Função para remover a máscara do CPF
+const removerMascaraCPF = (cpf) => {
+  return cpf.replace(/[^\d]/g, ''); // Remove tudo que não é dígito
+};
+
+// Função para converter data no formato dd/mm/yyyy para yyyy-mm-dd
+const converterDataParaISO = (data) => {
+  const [dia, mes, ano] = data.split('/').map(Number);
+  return `${ano}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+};
+
+// Função para adicionar um dia à data
+const adicionarUmDia = (data) => {
+  const date = new Date(data);
+  // Verifica se a data é inválida
+  if (isNaN(date.getTime())) {
+    return 'Data inválida';
+  }
+  // Adiciona um dia à data
+  date.setDate(date.getDate() + 1);
+  return date;
+};
+
 const EditarMotorista = () => {
-  const { id } = useParams(); // Obter o ID da URL
+  const { id } = useParams();
   const [motorista, setMotorista] = useState({
     name: '',
     cpf: '',
@@ -14,8 +39,9 @@ const EditarMotorista = () => {
     numero_cnh: '',
     categoria_cnh: '',
     status: '',
-    empresa: { id: '' }
+    empresa: { id: '', nome: '' } // Adicionado campo para nome da empresa
   });
+  const [empresas, setEmpresas] = useState([]); // Estado para armazenar as empresas
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,27 +54,82 @@ const EditarMotorista = () => {
             'ngrok-skip-browser-warning': 'true'
           }
         });
-        setMotorista(response.data);
+
+        // Adiciona um dia à data e a formata para dd/mm/yyyy
+        const dataComUmDia = adicionarUmDia(response.data.data_nascimento);
+        const dataFormatada = new Date(dataComUmDia).toLocaleDateString('pt-BR');
+
+        setMotorista({
+          ...response.data,
+          data_nascimento: dataFormatada
+        });
       } catch (error) {
         console.error('Erro ao buscar motorista', error);
       }
     };
+
+    const fetchEmpresas = async () => {
+      const token = sessionStorage.getItem('authToken');
+      try {
+        const response = await axios.get(`${GlobalUrl}/empresas`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setEmpresas(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar empresas', error);
+      }
+    };
+
     fetchMotorista();
+    fetchEmpresas();
   }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name.includes('empresa.')) {
+      const empresaKey = name.split('.')[1];
+      setMotorista(prevState => ({
+        ...prevState,
+        empresa: {
+          ...prevState.empresa,
+          [empresaKey]: value
+        }
+      }));
+    } else {
+      setMotorista(prevState => ({ ...prevState, [name]: value }));
+    }
+  };
+
+  const handleEmpresaChange = (e) => {
+    const selectedEmpresaId = e.target.value;
+    const selectedEmpresa = empresas.find(empresa => empresa.id === selectedEmpresaId);
+
     setMotorista(prevState => ({
       ...prevState,
-      [name]: value
+      empresa: {
+        id: selectedEmpresaId,
+        nome: selectedEmpresa ? selectedEmpresa.nome : ''
+      }
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
+    
+    // Remove a máscara do CPF e converte a data antes de enviar
+    const motoristaSemMascara = {
+      ...motorista,
+      cpf: removerMascaraCPF(motorista.cpf),
+      data_nascimento: converterDataParaISO(motorista.data_nascimento)
+    };
+
     try {
-      await axios.put(`${GlobalUrl}/motoristas/${id}`, motorista, {
+      await axios.put(`${GlobalUrl}/motoristas/${id}`, motoristaSemMascara, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -79,24 +160,18 @@ const EditarMotorista = () => {
           </div>
           <div className="form-group">
             <label htmlFor="cpf">CPF</label>
-            <input
-              type="text"
-              id="cpf"
-              name="cpf"
+            <MascaraCPF
               value={motorista.cpf}
               onChange={handleChange}
-              required
+              name="cpf"
             />
           </div>
           <div className="form-group">
             <label htmlFor="data_nascimento">Data de Nascimento</label>
-            <input
-              type="date"
-              id="data_nascimento"
-              name="data_nascimento"
+            <MascaraData
               value={motorista.data_nascimento}
               onChange={handleChange}
-              required
+              name="data_nascimento"
             />
           </div>
           <div className="form-group">
@@ -142,15 +217,21 @@ const EditarMotorista = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="empresa.id">Empresa ID</label>
-            <input
-              type="text"
-              id="empresa.id"
+            <label htmlFor="empresa">Empresa</label>
+            <select
+              id="empresa"
               name="empresa.id"
               value={motorista.empresa.id}
-              onChange={handleChange}
+              onChange={handleEmpresaChange}
               required
-            />
+            >
+              <option value="">Selecione</option>
+              {empresas.map(empresa => (
+                <option key={empresa.id} value={empresa.id}>
+                  {empresa.name}
+                </option>
+              ))}
+            </select>
           </div>
           <button type="submit" className="submit-button">Atualizar</button>
         </form>

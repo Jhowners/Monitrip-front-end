@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/AdicionarVeiculos.css';
@@ -13,12 +13,31 @@ const AdicionarVeiculo = () => {
     ano_fabricacao: '',
     status: '',
     marca: '',
-    categoria_cnh: '', // Adicionando categoria_cnh
     celular: {
       id: '' // Alterado para id do celular
     }
   });
+  const [celulares, setCelulares] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCelulares = async () => {
+      const token = sessionStorage.getItem('authToken');
+      try {
+        const response = await axios.get(GlobalUrl + '/celulares', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setCelulares(response.data);
+      } catch (error) {
+        console.error('Error fetching celulares', error);
+      }
+    };
+
+    fetchCelulares();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +66,7 @@ const AdicionarVeiculo = () => {
       }
     })
     .then(() => {
-      navigate('/veiculos');
+      navigate('/listar-veiculos');
     })
     .catch(error => {
       console.error('Error adding vehicle', error);
@@ -89,12 +108,21 @@ const AdicionarVeiculo = () => {
             <input type="text" id="marca" name="marca" value={veiculo.marca} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <label htmlFor="categoria_cnh">Categoria CNH</label>
-            <input type="text" id="categoria_cnh" name="categoria_cnh" value={veiculo.categoria_cnh} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="celular.id">ID do Celular</label>
-            <input type="number" id="celular.id" name="celular.id" value={veiculo.celular.id} onChange={handleChange} required />
+            <label htmlFor="celular.id">Celular</label>
+            <select
+              id="celular.id"
+              name="celular.id"
+              value={veiculo.celular.id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecione</option>
+              {celulares.map(celular => (
+                <option key={celular.id} value={celular.id}>
+                  {celular.numero}
+                </option>
+              ))}
+            </select>
           </div>
           <button type="submit" className="submit-button">Adicionar</button>
         </form>
