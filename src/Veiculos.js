@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/Veiculos.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const Veiculos = () => {
   const [veiculos, setVeiculos] = useState([]);
@@ -19,7 +18,7 @@ const Veiculos = () => {
     }
 
     // Fazer requisição para buscar os dados dos veículos
-    axios.get(GlobalUrl + '/veiculos', {
+    axios.get(process.env.REACT_APP_API_URL + '/veiculos', {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

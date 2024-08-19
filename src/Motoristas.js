@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirecionamento
 import './css/Motoristas.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const Motoristas = () => {
   const [motoristas, setMotoristas] = useState([]);
@@ -19,7 +18,7 @@ const Motoristas = () => {
     }
 
     // Fazer requisição para buscar os dados dos motoristas
-    axios.get(GlobalUrl + '/motoristas', {
+    axios.get(process.env.REACT_APP_API_URL + '/motoristas', {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

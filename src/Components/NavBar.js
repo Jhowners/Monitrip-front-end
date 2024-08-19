@@ -7,11 +7,8 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('Logout acionado'); // Para depuração
     sessionStorage.removeItem('authToken');
-    console.log('Token removido'); // Para depuração
     navigate('/login');
-    console.log('Redirecionando para /login'); // Para depuração
   };
 
   return (

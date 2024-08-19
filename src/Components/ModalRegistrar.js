@@ -5,7 +5,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ModalRegistrar.css'; 
-import GlobalUrl from '../GlobalUrl';
 
 Modal.setAppElement('#root'); // Para acessibilidade
 
@@ -33,14 +32,11 @@ const RegisterModal = () => {
       setError(null);
       setSuccessMessage('');
       try {
-        const response = await axios.post(GlobalUrl+'/auth/registrar', values, {
+        const response = await axios.post(process.env.REACT_APP_API_URL+'/auth/registrar', values, {
           headers: {
             'Content-Type': 'application/json',
           }
         });
-
-        // Verificar a estrutura da resposta
-        console.log('Resposta da API:', response.data);
 
         if (response.status === 200) {
           // Armazenar o token no localStorage

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './css/ListarTelefone.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const ListarTelefones = () => {
   const [telefones, setTelefones] = useState([]);
@@ -11,7 +10,7 @@ const ListarTelefones = () => {
   useEffect(() => {
     const fetchTelefones = async () => {
       const token = sessionStorage.getItem('authToken');
-      const response = await axios.get(GlobalUrl + '/celulares', {
+      const response = await axios.get(process.env.REACT_APP_API_URL + '/celulares', {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -25,7 +24,7 @@ const ListarTelefones = () => {
   const handleDelete = async (id) => {
     const token = sessionStorage.getItem('authToken');
     try {
-      await axios.delete(`${GlobalUrl}/celulares/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/celulares/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'

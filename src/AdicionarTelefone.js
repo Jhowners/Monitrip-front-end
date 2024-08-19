@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/AdicionarTelefone.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const AdicionarTelefone = () => {
   const [telefone, setTelefone] = useState({
@@ -23,7 +22,7 @@ const AdicionarTelefone = () => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
 
-    axios.post(GlobalUrl + '/celulares', telefone, {
+    axios.post(process.env.REACT_APP_API_URL + '/celulares', telefone, {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

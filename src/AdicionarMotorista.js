@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './css/AdicionarMotorista.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import MascaraCPF from './Components/MascaraCPF';
 import MascaraData from './Components/MascaraData';
 
@@ -45,7 +44,7 @@ const AdicionarMotorista = () => {
     const fetchEmpresas = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(`${GlobalUrl}/empresas`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/empresas`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -65,7 +64,7 @@ const AdicionarMotorista = () => {
       setIsEditing(true);
       const fetchMotorista = async () => {
         const token = sessionStorage.getItem('authToken');
-        const response = await axios.get(`${GlobalUrl}/motoristas/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/motoristas/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -126,7 +125,7 @@ const AdicionarMotorista = () => {
     };
 
     if (isEditing) {
-      axios.put(`${GlobalUrl}/motoristas/${id}`, motoristaSemMascara, {
+      axios.put(`${process.env.REACT_APP_API_URL}/motoristas/${id}`, motoristaSemMascara, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -139,7 +138,7 @@ const AdicionarMotorista = () => {
         console.error('Error updating driver', error);
       });
     } else {
-      axios.post(GlobalUrl + '/motoristas', motoristaSemMascara, {
+      axios.post(process.env.REACT_APP_API_URL + '/motoristas', motoristaSemMascara, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'

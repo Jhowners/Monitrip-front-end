@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './css/AdicionarTelefone.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const AlterarTelefone = () => {
   const { id } = useParams();
@@ -18,7 +17,7 @@ const AlterarTelefone = () => {
   useEffect(() => {
     const fetchTelefone = async () => {
       const token = sessionStorage.getItem('authToken');
-      const response = await axios.get(`${GlobalUrl}/celulares/${id}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/celulares/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -38,7 +37,7 @@ const AlterarTelefone = () => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
 
-    axios.put(`${GlobalUrl}/celulares/${id}`, telefone, {
+    axios.put(`${process.env.REACT_APP_API_URL}/celulares/${id}`, telefone, {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

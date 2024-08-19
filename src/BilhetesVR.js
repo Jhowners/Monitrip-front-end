@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import ModalBilhete from './Components/ModalBilhete';
 import FormataDataBilhetes from './Components/FormataDataBilhetes';
 import FormatarHora from './Components/FormatarHora';
@@ -25,7 +24,7 @@ const BilhetesVR = () => {
     const token = sessionStorage.getItem('authToken');
     
     if (token) {
-      axios.get(GlobalUrl + '/bilhetesVR', {
+      axios.get(process.env.REACT_APP_API_URL + '/bilhetesVR', {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'

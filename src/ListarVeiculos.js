@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import './css/ListarVeiculos.css';
 
 const ListarVeiculos = () => {
@@ -12,7 +11,7 @@ const ListarVeiculos = () => {
     const fetchVeiculos = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(GlobalUrl + '/veiculos', {
+        const response = await axios.get(process.env.REACT_APP_API_URL + '/veiculos', {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -29,7 +28,7 @@ const ListarVeiculos = () => {
   const handleDelete = async (id) => {
     const token = sessionStorage.getItem('authToken');
     try {
-      await axios.delete(`${GlobalUrl}/veiculos/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/veiculos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'

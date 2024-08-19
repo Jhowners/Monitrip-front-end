@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/Clientes.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([]);
@@ -17,7 +16,7 @@ const Clientes = () => {
     }
 
     // Fazer requisição para buscar os dados dos clientes
-    axios.get(GlobalUrl + '/empresas', {
+    axios.get(process.env.REACT_APP_API_URL + '/empresas', {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

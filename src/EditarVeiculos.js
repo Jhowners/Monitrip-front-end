@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import './css/EditarVeiculo.css';
 
 const EditarVeiculos = () => {
@@ -15,7 +14,7 @@ const EditarVeiculos = () => {
     const fetchVeiculo = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(`${GlobalUrl}/veiculos/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/veiculos/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -30,7 +29,7 @@ const EditarVeiculos = () => {
     const fetchCelulares = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(`${GlobalUrl}/celulares`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/celulares`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -66,7 +65,7 @@ const EditarVeiculos = () => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
 
-    axios.put(`${GlobalUrl}/veiculos/${id}`, veiculo, {
+    axios.put(`${process.env.REACT_APP_API_URL}/veiculos/${id}`, veiculo, {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

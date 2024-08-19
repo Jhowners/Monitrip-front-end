@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/AdicionarVeiculos.css';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
+
 
 const AdicionarVeiculo = () => {
   const [veiculo, setVeiculo] = useState({
@@ -24,7 +24,7 @@ const AdicionarVeiculo = () => {
     const fetchCelulares = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(GlobalUrl + '/celulares', {
+        const response = await axios.get(process.env.REACT_APP_API_URL + '/celulares', {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -59,7 +59,7 @@ const AdicionarVeiculo = () => {
     e.preventDefault();
     const token = sessionStorage.getItem('authToken');
 
-    axios.post(GlobalUrl + '/veiculos', veiculo, {
+    axios.post(process.env.REACT_APP_API_URL + '/veiculos', veiculo, {
       headers: {
         Authorization: `Bearer ${token}`,
         'ngrok-skip-browser-warning': 'true'

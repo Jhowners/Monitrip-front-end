@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import FormatarDataListar from './Components/FormatarDataListar'; // Atualize a importação
 import './css/ListarMotoristas.css';
 import FormatarCpf from './Components/FormatarCpf'
@@ -14,7 +13,7 @@ const ListarMotoristas = () => {
   useEffect(() => {
     const fetchMotoristas = async () => {
       const token = sessionStorage.getItem('authToken');
-      const response = await axios.get(`${GlobalUrl}/motoristas`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/motoristas`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
@@ -28,7 +27,7 @@ const ListarMotoristas = () => {
   const handleDelete = async (id) => {
     const token = sessionStorage.getItem('authToken');
     try {
-      await axios.delete(`${GlobalUrl}/motoristas/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/motoristas/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'

@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import './css/Login.css';
 import ModalRegistrar from './Components/ModalRegistrar.js'
-import GlobalUrl from './GlobalUrl.js';
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Email inválido').required('Campo obrigatório'),
@@ -20,11 +19,10 @@ const Login = () => {
     setSuccessMessage(''); // Limpar mensagens anteriores
     setErrorMessage(''); // Limpar mensagens de erro
     try {
-      const response = await axios.post(GlobalUrl + '/auth/login', {
+      const response = await axios.post(process.env.REACT_APP_API_URL + '/auth/login', {
         email: values.email,
         senha: values.senha,
       });
-      console.log(response.data);
       
       // Supondo que o token esteja na resposta e você queira armazená-lo
       sessionStorage.setItem('authToken', response.data.token);

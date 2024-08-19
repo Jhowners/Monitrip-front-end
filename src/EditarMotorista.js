@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import GlobalUrl from './GlobalUrl';
 import MascaraCPF from './Components/MascaraCPF';
 import MascaraData from './Components/MascaraData';
 import './css/EditarMotorista.css';
@@ -48,7 +47,7 @@ const EditarMotorista = () => {
     const fetchMotorista = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(`${GlobalUrl}/motoristas/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/motoristas/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -71,7 +70,7 @@ const EditarMotorista = () => {
     const fetchEmpresas = async () => {
       const token = sessionStorage.getItem('authToken');
       try {
-        const response = await axios.get(`${GlobalUrl}/empresas`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/empresas`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'
@@ -129,7 +128,7 @@ const EditarMotorista = () => {
     };
 
     try {
-      await axios.put(`${GlobalUrl}/motoristas/${id}`, motoristaSemMascara, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/motoristas/${id}`, motoristaSemMascara, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': 'true'
