@@ -102,6 +102,7 @@ const BilhetesBB = () => {
                   <th>Data da Viagem</th>
                   <th>Origem</th>
                   <th>Destino</th>
+                  <th>Transação</th>
                 </tr>
               </thead>
               <tbody>
@@ -109,82 +110,89 @@ const BilhetesBB = () => {
                   <tr key={bilhete.id} onClick={() => handleOpenModal(bilhete)}>
                     <td>{bilhete.numeroBilheteEmbarque}</td>
                     <td>
-  <FormatarCnpj 
-    cnpj={bilhete.cnpjEmpresa ? 
-      bilhete.cnpjEmpresa : 
-      'Não Cadastrado'} 
-  />
-</td>
+                      <FormatarCnpj
+                        cnpj={bilhete.cnpjEmpresa ?
+                          bilhete.cnpjEmpresa :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  <FaCalendarAlt className="icon" /> 
-  <FormataDataBilhetes 
-    data={bilhete.dataEmissaoBilhete ? 
-      bilhete.dataEmissaoBilhete : 
-      'Não Cadastrado'} 
-  />
-</td>
+                    <td>
+                      <FaCalendarAlt className="icon" />
+                      <FormataDataBilhetes
+                        data={bilhete.dataEmissaoBilhete ?
+                          bilhete.dataEmissaoBilhete :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  <FaCalendarAlt className="icon" /> 
-  <FormatarHora 
-    time={bilhete.horaEmissaoBilhete ? 
-      bilhete.horaEmissaoBilhete : 
-      'Não Cadastrado'} 
-  />
-</td>
+                    <td>
+                      <FaCalendarAlt className="icon" />
+                      <FormatarHora
+                        time={bilhete.horaEmissaoBilhete ?
+                          bilhete.horaEmissaoBilhete :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  R$ {bilhete.valorTotal ? 
-    bilhete.valorTotal : 
-    'Não Cadastrado'}
-</td>
+                    <td>
+                      R$ {bilhete.valorTotal ?
+                        bilhete.valorTotal :
+                        'Não Cadastrado'}
+                    </td>
 
-<td>
-  {truncateText(bilhete.informacoesPassageiro.nomePassageiro ? 
-    bilhete.informacoesPassageiro.nomePassageiro : 
-    'Não Cadastrado', 30)}
-</td>
+                    <td>
+                      {truncateText(bilhete.informacoesPassageiro.nomePassageiro ?
+                        bilhete.informacoesPassageiro.nomePassageiro :
+                        'Não Cadastrado', 30)}
+                    </td>
 
-<td>
-  <FormatarCpf 
-    cpf={bilhete.informacoesPassageiro.cpfPassageiro ? 
-      bilhete.informacoesPassageiro.cpfPassageiro : 
-      'Não Cadastrado'} 
-  />
-</td>
+                    <td>
+                      <FormatarCpf
+                        cpf={bilhete.informacoesPassageiro.cpfPassageiro ?
+                          bilhete.informacoesPassageiro.cpfPassageiro :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  <FaPhoneAlt className="icon" />
-  <FormatarTelefone 
-    phone={bilhete.informacoesPassageiro.celularPassageiro ? 
-      bilhete.informacoesPassageiro.celularPassageiro : 
-      'Não Cadastrado'} 
-  />
-</td>
+                    <td>
+                      <FaPhoneAlt className="icon" />
+                      <FormatarTelefone
+                        phone={bilhete.informacoesPassageiro.celularPassageiro ?
+                          bilhete.informacoesPassageiro.celularPassageiro :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  <FaCalendarAlt className="icon" /> 
-  <FormataDataBilhetes 
-    data={bilhete.dataViagem ? 
-      bilhete.dataViagem : 
-      'Não Cadastrado'} 
-  />
-</td>
+                    <td>
+                      <FaCalendarAlt className="icon" />
+                      <FormataDataBilhetes
+                        data={bilhete.dataViagem ?
+                          bilhete.dataViagem :
+                          'Não Cadastrado'}
+                      />
+                    </td>
 
-<td>
-  <FaMapMarkerAlt className="icon" /> 
-  {bilhete.idPontoOrigemViagem ? 
-    bilhete.idPontoOrigemViagem : 
-    'Não Cadastrado'}
-</td>
+                    <td>
+                      <FaMapMarkerAlt className="icon" />
+                      {bilhete.idPontoOrigemViagem ?
+                        bilhete.idPontoOrigemViagem :
+                        'Não Cadastrado'}
+                    </td>
 
-<td>
-  <FaMapMarkerAlt className="icon" /> 
-  {bilhete.idPontoDestinoViagem ? 
-    bilhete.idPontoDestinoViagem : 
-    'Não Cadastrado'}
-</td>
+                    <td>
+                      <FaMapMarkerAlt className="icon" />
+                      {bilhete.idPontoDestinoViagem ?
+                        bilhete.idPontoDestinoViagem :
+                        'Não Cadastrado'}
+                    </td>
+
+                    <td>
+                      {bilhete.idTransacao ?
+                        bilhete.idTransacao :
+                        'Não Cadastrado'}
+                    </td>
+
 
                   </tr>
                 ))}

@@ -1,88 +1,139 @@
 .listar-veiculos-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    color: #fff; /* Cor do texto em plano de fundo escuro */
-    background: #1a1a1a; /* Cor de fundo escuro para contraste */
-    min-height: 100vh;
-    padding: 20px;
-  }
-  
-  .listar-veiculos-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #2a2a2a; /* Cor de fundo para contraste */
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .add-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: #28a745;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  .add-button:hover {
-    background-color: #218838;
-  }
-  
-  .veiculos-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .veiculos-table th, .veiculos-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #333; /* Linha de separação suave */
-  }
-  
-  .veiculos-table th {
-    background-color: #333; /* Fundo dos cabeçalhos */
-    color: #fff; /* Cor do texto dos cabeçalhos */
-  }
-  
-  .veiculos-table td {
-    background-color: #2a2a2a; /* Cor de fundo das células */
-    color: #ddd; /* Cor do texto das células */
-  }
-  
-  .veiculos-table tr:nth-child(even) td {
-    background-color: #252525; /* Cor alternativa para linhas pares */
-  }
-  
-  .edit-button, .delete-button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  .edit-button {
-    background-color: #28a745;
-    text-decoration: none;
-    margin-right: 5px;
-  }
-  
-  .edit-button:hover {
-    background-color: #218838;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-  }
-  
-  .delete-button:hover {
-    background-color: #c82333;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff; /* Cor do texto em plano de fundo escuro */
+  background: #1a1a1a; /* Cor de fundo escuro para contraste */
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.listar-veiculos-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #2a2a2a; /* Cor de fundo para contraste */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Botão de adicionar veículo */
+.add-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  background: #4caf50;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background: #45a049;
+}
+
+/* Tabela de veículos */
+.veiculos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.veiculos-table th, .veiculos-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #444;
+}
+
+.veiculos-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.veiculos-table td {
+  background-color: #444;
+  color: #e0e0e0;
+}
+
+.veiculos-table tr:nth-child(even) td {
+  background-color: #252525;
+}
+
+/* Botões de ação na tabela */
+.edit-button, .delete-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  margin-right: 5px;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #f44336;
+}
+
+.delete-button:hover {
+  background-color: #e53935;
+}
+
+/* Estilo para o dropdown de filtro de empresas */
+.empresa-dropdown {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empresa-dropdown label {
+  margin-right: 10px;
+  color: #e0e0e0;
+  font-size: 16px;
+}
+
+.empresa-dropdown select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-size: 16px;
+}
+
+/* Estilo das opções no dropdown */
+.empresa-dropdown option {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+
+/* Estilo direto para o select com a classe empresa-dropdown */
+select.empresa-dropdown {
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #2a2a2a; /* Cor de fundo escura */
+  color: #e0e0e0; /* Cor do texto */
+  font-size: 16px;
+  width: 100%; /* Para garantir que ocupe todo o espaço disponível */
+}
+
+select.empresa-dropdown option {
+  background-color: #2a2a2a; /* Cor de fundo das opções */
+  color: white; /* Cor do texto das opções */
+}
