@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import NavBar from './Components/NavBar';
 import ModalBilhete from './Components/ModalBilhete';
 import FormatarHora from './Components/FormatarHora';
@@ -17,6 +17,7 @@ const BilhetesBB = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [sortOrder, setSortOrder] = useState('asc'); // Estado para controlar a ordem de classificação
 
   useEffect(() => {
     const token = sessionStorage.getItem('authToken');
@@ -73,6 +74,23 @@ const BilhetesBB = () => {
     }
   };
 
+  // Função para alternar a ordem da classificação
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  // Função para ordenar bilhetes pela data da viagem (string)
+  const sortBilhetesByDate = (bilhetes) => {
+    return bilhetes.sort((a, b) => {
+      const dateA = a.dataViagem;
+      const dateB = b.dataViagem;
+      return sortOrder === 'asc' ? dateA.localeCompare(dateB) : dateB.localeCompare(dateA);
+    });
+  };
+
+  // Ordena os bilhetes pela data da viagem antes de exibi-los
+  const sortedBilhetes = sortBilhetesByDate(bilhetes);
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -81,10 +99,8 @@ const BilhetesBB = () => {
     <div className="bilhetes-container">
       <NavBar />
       <div className="bilhetes-content">
-        <div className="bilhetes-header">
-          <h2>Bilhetes do Brasil Bus</h2>
-        </div>
-        {Array.isArray(bilhetes) && bilhetes.length === 0 ? (
+        <h2>Bilhetes do Brasil Bus</h2>
+        {Array.isArray(sortedBilhetes) && sortedBilhetes.length === 0 ? (
           <p>Nenhum bilhete encontrado.</p>
         ) : (
           <>
@@ -99,14 +115,17 @@ const BilhetesBB = () => {
                   <th>Nome Passageiro</th>
                   <th>CPF</th>
                   <th>Celular</th>
-                  <th>Data da Viagem</th>
+                  {/* Coluna clicável para alternar a ordenação */}
+                  <th onClick={toggleSortOrder} style={{ cursor: 'pointer' }}>
+                    Data da Viagem {sortOrder === 'asc' ? '↑' : '↓'}
+                  </th>
                   <th>Origem</th>
                   <th>Destino</th>
                   <th>Transação</th>
                 </tr>
               </thead>
               <tbody>
-                {Array.isArray(bilhetes) && bilhetes.map(bilhete => (
+                {Array.isArray(sortedBilhetes) && sortedBilhetes.map(bilhete => (
                   <tr key={bilhete.id} onClick={() => handleOpenModal(bilhete)}>
                     <td>{bilhete.numeroBilheteEmbarque}</td>
                     <td>
@@ -192,8 +211,6 @@ const BilhetesBB = () => {
                         bilhete.idTransacao :
                         'Não Cadastrado'}
                     </td>
-
-
                   </tr>
                 ))}
               </tbody>

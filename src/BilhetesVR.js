@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaTicketAlt, FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import NavBar from './Components/NavBar';
 import ModalBilhete from './Components/ModalBilhete';
 import FormataDataBilhetes from './Components/FormataDataBilhetes';
@@ -10,8 +10,6 @@ import FormatarTelefone from './Components/FormatarTelefone';
 import FormatarCnpj from './Components/FormatarCnpj';
 import './css/Bilhete.css';
 
-
-
 const BilhetesVR = () => {
   const [bilhetes, setBilhetes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +17,7 @@ const BilhetesVR = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [sortOrder, setSortOrder] = useState('asc'); // Novo estado para ordenação
 
   useEffect(() => {
     const token = sessionStorage.getItem('authToken');
@@ -47,6 +46,23 @@ const BilhetesVR = () => {
       setLoading(false);
     }
   }, [currentPage]);
+
+  // Função para alternar a ordenação
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  // Função para ordenar bilhetes por data (como string)
+  const sortBilhetesByDate = (bilhetes) => {
+    return bilhetes.sort((a, b) => {
+      const dateA = a.dataViagem;
+      const dateB = b.dataViagem;
+      return sortOrder === 'asc' ? dateA.localeCompare(dateB) : dateB.localeCompare(dateA);
+    });
+  };
+
+  // Ordenar os bilhetes antes de renderizar
+  const sortedBilhetes = sortBilhetesByDate(bilhetes);
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -97,122 +113,92 @@ const BilhetesVR = () => {
                   <th>Nome Passageiro</th>
                   <th>CPF</th>
                   <th>Celular</th>
-                  <th>Data da Viagem</th>
+                  <th onClick={toggleSortOrder} style={{ cursor: 'pointer' }}>
+                    Data da Viagem {sortOrder === 'asc' ? '↑' : '↓'}
+                  </th>
                   <th>Origem</th>
                   <th>Destino</th>
                   <th>Transação</th>
                 </tr>
               </thead>
               <tbody>
-                {Array.isArray(bilhetes) && bilhetes.map(bilhete => (
+                {sortedBilhetes.map(bilhete => (
                   <tr key={bilhete.id} onClick={() => handleOpenModal(bilhete)}>
                     <td>{bilhete.numeroBilheteEmbarque}</td>
                     <td>
                       <FormatarCnpj
-                        cnpj={bilhete.cnpjEmpresa ?
-                          bilhete.cnpjEmpresa :
-                          'Não Cadastrado'}
+                        cnpj={bilhete.cnpjEmpresa ? bilhete.cnpjEmpresa : 'Não Cadastrado'}
                       />
                     </td>
-
                     <td>
                       <FaCalendarAlt className="icon" />
                       <FormataDataBilhetes
-                        data={bilhete.dataEmissaoBilhete ?
-                          bilhete.dataEmissaoBilhete :
-                          'Não Cadastrado'}
+                        data={bilhete.dataEmissaoBilhete ? bilhete.dataEmissaoBilhete : 'Não Cadastrado'}
                       />
                     </td>
-
                     <td>
                       <FaCalendarAlt className="icon" />
                       <FormatarHora
-                        time={bilhete.horaEmissaoBilhete ?
-                          bilhete.horaEmissaoBilhete :
-                          'Não Cadastrado'}
+                        time={bilhete.horaEmissaoBilhete ? bilhete.horaEmissaoBilhete : 'Não Cadastrado'}
                       />
                     </td>
-
+                    <td>R$ {bilhete.valorTotal ? bilhete.valorTotal : 'Não Cadastrado'}</td>
                     <td>
-                      R$ {bilhete.valorTotal ?
-                        bilhete.valorTotal :
-                        'Não Cadastrado'}
+                      {truncateText(bilhete.informacoesPassageiro.nomePassageiro ? bilhete.informacoesPassageiro.nomePassageiro : 'Não Cadastrado', 30)}
                     </td>
-
-                    <td>
-                      {truncateText(bilhete.informacoesPassageiro.nomePassageiro ?
-                        bilhete.informacoesPassageiro.nomePassageiro :
-                        'Não Cadastrado', 30)}
-                    </td>
-
                     <td>
                       <FormatarCpf
-                        cpf={bilhete.informacoesPassageiro.cpfPassageiro ?
-                          bilhete.informacoesPassageiro.cpfPassageiro :
-                          'Não Cadastrado'}
+                        cpf={bilhete.informacoesPassageiro.cpfPassageiro ? bilhete.informacoesPassageiro.cpfPassageiro : 'Não Cadastrado'}
                       />
                     </td>
-
                     <td>
                       <FaPhoneAlt className="icon" />
                       <FormatarTelefone
-                        phone={bilhete.informacoesPassageiro.celularPassageiro ?
-                          bilhete.informacoesPassageiro.celularPassageiro :
-                          'Não Cadastrado'}
+                        phone={bilhete.informacoesPassageiro.celularPassageiro ? bilhete.informacoesPassageiro.celularPassageiro : 'Não Cadastrado'}
                       />
                     </td>
-
                     <td>
                       <FaCalendarAlt className="icon" />
                       <FormataDataBilhetes
-                        data={bilhete.dataViagem ?
-                          bilhete.dataViagem :
-                          'Não Cadastrado'}
+                        data={bilhete.dataViagem ? bilhete.dataViagem : 'Não Cadastrado'}
                       />
                     </td>
-
                     <td>
                       <FaMapMarkerAlt className="icon" />
-                      {bilhete.idPontoOrigemViagem ?
-                        bilhete.idPontoOrigemViagem :
-                        'Não Cadastrado'}
+                      {bilhete.origem ? bilhete.origem : 'Não Cadastrado'}
                     </td>
-
                     <td>
                       <FaMapMarkerAlt className="icon" />
-                      {bilhete.idPontoDestinoViagem ?
-                        bilhete.idPontoDestinoViagem :
-                        'Não Cadastrado'}
+                      {bilhete.destino ? bilhete.destino : 'Não Cadastrado'}
                     </td>
-                    <td>
-                      {bilhete.idTransacao ?
-                        bilhete.idTransacao :
-                        'Não Cadastrado'}
-                    </td>
-
+                    <td>{bilhete.transacao ? bilhete.transacao : 'Não Cadastrado'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="pagination-controls">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                Anterior
-              </button>
-              <span>Página {currentPage} de {totalPages}</span>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                Próxima
-              </button>
+
+            <div className="pagination">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={currentPage === index + 1 ? 'active' : ''}
+                >
+                  {index + 1}
+                </button>
+              ))}
             </div>
           </>
         )}
+
+        {selectedBilhete && (
+          <ModalBilhete
+            bilhete={selectedBilhete}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
       </div>
-      <ModalBilhete isOpen={isModalOpen} onClose={handleCloseModal} bilhete={selectedBilhete} />
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './css/AdicionarVeiculos.css';
 import NavBar from './Components/NavBar';
 
-
 const AdicionarVeiculo = () => {
   const [veiculo, setVeiculo] = useState({
     placa: '',
@@ -15,9 +14,14 @@ const AdicionarVeiculo = () => {
     marca: '',
     celular: {
       id: '' // Alterado para id do celular
+    },
+    empresa: {
+      id: '' // Adicionando id da empresa
     }
   });
+  
   const [celulares, setCelulares] = useState([]);
+  const [empresas, setEmpresas] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +40,23 @@ const AdicionarVeiculo = () => {
       }
     };
 
+    const fetchEmpresas = async () => {
+      const token = sessionStorage.getItem('authToken');
+      try {
+        const response = await axios.get(process.env.REACT_APP_API_URL + '/empresas', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setEmpresas(response.data);
+      } catch (error) {
+        console.error('Error fetching empresas', error);
+      }
+    };
+
     fetchCelulares();
+    fetchEmpresas(); // Buscando empresas
   }, []);
 
   const handleChange = (e) => {
@@ -48,6 +68,15 @@ const AdicionarVeiculo = () => {
         celular: {
           ...prevState.celular,
           [celularKey]: value
+        }
+      }));
+    } else if (name.includes('empresa.')) {
+      const empresaKey = name.split('.')[1];
+      setVeiculo(prevState => ({
+        ...prevState,
+        empresa: {
+          ...prevState.empresa,
+          [empresaKey]: value
         }
       }));
     } else {
@@ -120,6 +149,23 @@ const AdicionarVeiculo = () => {
               {celulares.map(celular => (
                 <option key={celular.id} value={celular.id}>
                   {celular.numero}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="empresa.id">Empresa</label>
+            <select
+              id="empresa.id"
+              name="empresa.id"
+              value={veiculo.empresa.id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecione</option>
+              {empresas.map(empresa => (
+                <option key={empresa.id} value={empresa.id}>
+                  {empresa.name} {/* Ajuste o campo conforme necessário */}
                 </option>
               ))}
             </select>
