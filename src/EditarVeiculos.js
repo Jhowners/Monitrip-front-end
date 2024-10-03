@@ -8,6 +8,7 @@ const EditarVeiculos = () => {
   const { id } = useParams();
   const [veiculo, setVeiculo] = useState(null);
   const [celulares, setCelulares] = useState([]);
+  const [empresas, setEmpresas] = useState([]); // Estado para armazenar empresas
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,8 +42,24 @@ const EditarVeiculos = () => {
       }
     };
 
+    const fetchEmpresas = async () => { // Função para buscar empresas
+      const token = sessionStorage.getItem('authToken');
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/empresas`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        setEmpresas(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar empresas', error);
+      }
+    };
+
     fetchVeiculo();
     fetchCelulares();
+    fetchEmpresas(); // Chamada para buscar empresas
   }, [id]);
 
   const handleChange = (e) => {
@@ -54,6 +71,15 @@ const EditarVeiculos = () => {
         celular: {
           ...prevState.celular,
           [celularKey]: value
+        }
+      }));
+    } else if (name.includes('empresa.')) { // Verifica se o campo é da empresa
+      const empresaKey = name.split('.')[1];
+      setVeiculo(prevState => ({
+        ...prevState,
+        empresa: {
+          ...prevState.empresa,
+          [empresaKey]: value
         }
       }));
     } else {
@@ -130,6 +156,23 @@ const EditarVeiculos = () => {
               {celulares.map(celular => (
                 <option key={celular.id} value={celular.id}>
                   {celular.numero}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="empresa.id">Empresa</label>
+            <select
+              id="empresa.id"
+              name="empresa.id"
+              value={veiculo.empresa.id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecione</option>
+              {empresas.map(empresa => (
+                <option key={empresa.id} value={empresa.id}>
+                  {empresa.name} {/* Ajuste o campo conforme necessário */}
                 </option>
               ))}
             </select>

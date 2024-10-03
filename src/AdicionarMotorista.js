@@ -223,7 +223,8 @@ const AdicionarMotorista = () => {
               onChange={handleChange}
               required
             >
-              <option value="ativo" defaultValue={"ativo"}>Ativo</option>
+              <option value="" >Selecione</option>
+              <option value="ativo" >Ativo</option>
               <option value="inativo">Inativo</option>
             </select>
           </div>
