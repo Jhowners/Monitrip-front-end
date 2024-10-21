@@ -171,7 +171,7 @@ const BilhetesVR = () => {
                       <FaMapMarkerAlt className="icon" />
                       {bilhete.destino ? bilhete.destino : 'Não Cadastrado'}
                     </td>
-                    <td>{bilhete.transacao ? bilhete.transacao : 'Não Cadastrado'}</td>
+                    <td>{bilhete.idTransacao ? bilhete.idTransacao : 'Não Cadastrado'}</td>
                   </tr>
                 ))}
               </tbody>
