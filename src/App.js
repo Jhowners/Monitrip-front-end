@@ -20,6 +20,11 @@ import ListarVeiculos from './ListarVeiculos'
 import AdicionarTelefone from './AdicionarTelefone';
 import AlterarTelefone from './AlterarTelefone';
 import ListarTelefones from './ListarTelefone';
+import LogVelocidadeTempoLocalizacao from './ListarLogVelocidadeTempoLocalizacao';
+import ListarLogEventoMotorista from './ListarLogEventoMotorista';
+import ListarLogMotivoParada from './ListarLogMotivoParada';
+import ListarLogViagem from './ListarLogViagem';
+import ListarBilheteEmbarque from './ListarBilheteEmbarque';
 
 function App() {
   const isAuthenticated = !!sessionStorage.getItem('authToken'); // Verificar se o usuário está autenticado
@@ -43,11 +48,14 @@ function App() {
           <Route path="/editar-motorista/:id" element={isAuthenticated ? <EditarMotorista /> : <Navigate to="/login" />} />
           <Route path="/editar-veiculo/:id" element={isAuthenticated ? <EditarVeiculos /> : <Navigate to="/login" />} />
           <Route path="/adicionar-veiculo" element={isAuthenticated ? <AdicionarVeiculo /> : <Navigate to="/login" />} />
-
           <Route path="/adicionar-telefone" element={isAuthenticated ? <AdicionarTelefone /> : <Navigate to="/login" />} />
           <Route path="/alterar-telefone/:id" element={isAuthenticated ? <AlterarTelefone /> : <Navigate to="/login" />} />
           <Route path="/listar-telefones" element={isAuthenticated ? <ListarTelefones /> : <Navigate to="/login" />} />
-
+          <Route path="/velocidade-tempo-localizacao" element={isAuthenticated ? <LogVelocidadeTempoLocalizacao /> : <Navigate to="/login" />} />
+          <Route path="/evento-motorista" element={isAuthenticated ? <ListarLogEventoMotorista /> : <Navigate to="/login" />} />
+          <Route path="/motivo-parada" element={isAuthenticated ? <ListarLogMotivoParada /> : <Navigate to="/login" />} />
+          <Route path="/iniciofim-viagem" element={isAuthenticated ? <ListarLogViagem /> : <Navigate to="/login" />} />
+          <Route path="/bilhete-embarque" element={isAuthenticated ? <ListarBilheteEmbarque /> : <Navigate to="/login" />} />
 
           <Route path="/" element={<Navigate to={isAuthenticated ? "/empresas" : "/login"} />} />
         </Routes>

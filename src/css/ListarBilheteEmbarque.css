@@ -1,0 +1,49 @@
+.logs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: #1a1a1a;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .logs-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  
+  .logs-content h2 {
+    color: #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+  }
+  
+  .logs-table th, .logs-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+  }
+  
+  .logs-table th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .logs-table td {
+    background-color: #2a2a2a;
+    color: #ddd;
+  }
+  
+  .logs-table tr:nth-child(even) td {
+    background-color: #252525;
+  }
+  
